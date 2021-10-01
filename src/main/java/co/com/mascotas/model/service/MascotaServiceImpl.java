@@ -14,8 +14,8 @@ public class MascotaServiceImpl implements MascotaService{
 
 	
 	@Autowired
-	
 	private MascotaRepository mascotaRepository;
+	
 	@Override
 	public Optional<Mascota> findById(Integer id) {
 		

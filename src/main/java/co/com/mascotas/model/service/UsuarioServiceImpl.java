@@ -39,4 +39,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuarioRepository.deleteById(id);
 	}
 
+	@Override
+	public Long ConsultarPorCredenciales(String contraseña, String email) {
+		
+		return usuarioRepository.ConsultarPorCredenciales(contraseña, email);
+	}
+
+
+
 }

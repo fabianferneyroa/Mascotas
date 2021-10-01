@@ -1,7 +1,5 @@
 package co.com.mascotas.model.entity;
 
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,7 +17,6 @@ private Integer idEspecie;
 private String nombre;
 @Column(name="descripcion_especie")
 private String descripcion;
-
 
 
 public Integer getIdEspecie() {

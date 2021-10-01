@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 
 import co.com.mascotas.model.entity.Especie;
 import co.com.mascotas.repository.EspecieRepository;
+
 @Service
 public class EspecieServiceImpl implements EspecieService {
 
 	
 	@Autowired
-	EspecieRepository especieRepository;
+	private EspecieRepository especieRepository;
 	
 	@Override
 	public Optional<Especie> findById(Integer id) {
@@ -40,3 +41,4 @@ public class EspecieServiceImpl implements EspecieService {
 	}
 
 }
+

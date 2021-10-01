@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.mascotas.model.entity.Usuario;
 import co.com.mascotas.model.service.UsuarioService;
+import co.com.mascotas.security.JWTUtil;
 
 @RestController
 @RequestMapping("/api/usuario")
@@ -22,6 +23,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired 
+	private JWTUtil jwtUtil;
 	
 	@GetMapping("/{id}")
 	public Optional<Usuario> buscarPorId(@PathVariable Long id){
@@ -64,5 +68,29 @@ public class UsuarioController {
 		usuarioService.deleteById(id);
 		
 	}
+	
+	@GetMapping("/validar")
+	public String validar(@RequestBody Usuario usuario) {
+		
+	String email= usuario.getEmailUsuario();
+	String ctr= usuario.getContraseñaUsuario();
+
+	Usuario user= usuarioService.findById(usuarioService.ConsultarPorCredenciales(ctr,email)).get();
+	
+	if(user !=null) {
+		
+		//crear jwt
+	String token =jwtUtil.crearToken(String.valueOf(user.getIdUsuario()), user.getEmailUsuario());
+	
+		return token;
+	}else {
+		return"incorrecto";
+		
+	}
+	
+	
+	
+	}
 
 }
+
