@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -20,7 +21,7 @@ import co.com.mascotas.model.service.DueñoService;
 
 @RestController
 @RequestMapping("/api/dueños")
-@CrossOrigin(origins="http:localhost:3000")
+@CrossOrigin(origins="*",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class DueñoController {
 	
 	@Autowired 
@@ -36,8 +37,8 @@ public class DueñoController {
 	public List<Dueño> listar(){
 		
 		return dueñoService.findAll();
-	}
-	
+	} 
+
 	@PostMapping 
 	public Dueño guardar(@RequestBody Dueño dueño) {
 		
